@@ -1,0 +1,29 @@
+CRYSTALLIZED CALL — GAMES 1
+
+Nouveau module multijoueur :
+- onglet Jeux ;
+- liste d'amis ;
+- invitation à jouer ;
+- accepter / refuser ;
+- invitation conservée si l'ami ouvre l'application plus tard ;
+- Morpion multijoueur réel ;
+- Puissance 4 multijoueur réel ;
+- tours synchronisés avec Supabase ;
+- résultat Victoire / Défaite / Égalité ;
+- abandon d'une partie ;
+- revanche ;
+- bouton Appel vocal pendant la partie.
+
+INSTALLATION :
+1. Déployer ce ZIP sur Netlify.
+2. Ouvrir INSTALL_GAMES_1.sql.
+3. Copier tout le fichier.
+4. Supabase > SQL Editor > New query.
+5. Coller puis Run.
+
+Le SQL ajoute seulement les tables/fonctions de jeux.
+Il ne supprime pas les comptes, amis, messages ou groupes.
+
+NOTE APPEL VOCAL :
+L'appel marche quand les deux appareils ont l'application active.
+Une sonnerie garantie lorsque l'application est totalement fermée demandera plus tard les notifications Push.

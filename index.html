@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1020">
+  <title>Crystallized Call</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/assets/logo.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="loading" class="loading">
+    <img src="/assets/logo.png" alt="">
+    <strong>Crystallized Call</strong>
+    <span>Ouverture du compte…</span>
+  </div>
+
+  <main id="auth" class="auth hidden">
+    <section class="authShell">
+      <section class="authCard">
+        <img class="authLogo" src="/assets/logo.png" alt="">
+        <h1>Crystallized Call</h1>
+        <div class="version">GAMES 1</div>
+        <p class="muted">Base propre · contacts · groupes · notifications</p>
+        <div class="tabs">
+          <button id="tabLogin" class="tab active">Se connecter</button>
+          <button id="tabSignup" class="tab">Créer un compte</button>
+        </div>
+        <form id="loginForm">
+          <label>Adresse e-mail</label>
+          <input id="loginEmail" type="email" autocomplete="email" required>
+          <label>Mot de passe</label>
+          <input id="loginPassword" type="password" autocomplete="current-password" required>
+          <button class="primary full" type="submit">Se connecter</button>
+        </form>
+        <form id="signupForm" class="hidden">
+          <label>Adresse e-mail</label>
+          <input id="signupEmail" type="email" autocomplete="email" required>
+          <label>Pseudo</label>
+          <input id="signupUsername" maxlength="20" autocomplete="nickname" required>
+          <label>Mot de passe</label>
+          <input id="signupPassword" type="password" minlength="6" autocomplete="new-password" required>
+          <button class="primary full" type="submit">Créer mon compte</button>
+        </form>
+        <div id="authMessage" class="notice"></div>
+      </section>
+      <aside id="rememberedBox" class="rememberedBox hidden">
+        <div class="rememberedTitle">Comptes déjà utilisés</div>
+        <div class="rememberedHelp">Appuie sur un compte pour remettre son e-mail. Le mot de passe n'est jamais enregistré.</div>
+        <div id="rememberedAccounts" class="rememberedAccounts"></div>
+      </aside>
+    </section>
+  </main>
+
+  <main id="app" class="app hidden">
+    <aside id="sidebar" class="sidebar">
+      <header class="meBar">
+        <div id="myAvatar" class="avatar"></div>
+        <div class="meText">
+          <strong id="myName">Moi</strong>
+          <small>Connecté</small>
+        </div>
+        <button id="logoutBtn" class="logoutBtn" title="Se déconnecter"><span class="doorIcon">🚪</span><span>Déconnexion</span></button>
+      </header>
+
+      <nav class="sideTabs gameTabs">
+        <button class="sideTab active" data-side="chats">💬<span>Discussions</span><span id="messagesTabDot" class="tabDot hidden"></span></button>
+        <button class="sideTab" data-side="add">➕<span>Ajouter</span></button>
+        <button class="sideTab" data-side="requests">👥<span>Demandes</span><span id="requestTabDot" class="tabDot hidden"></span></button>
+        <button class="sideTab" data-side="games">🎮<span>Jeux</span><span id="gameTabDot" class="tabDot hidden"></span></button>
+      </nav>
+
+      <section id="sideChats" class="sidePane">
+        <section class="panel grow">
+          <div class="panelTitle"><span>Discussions</span><button id="newGroupBtn" class="smallBtn">+ Groupe</button></div>
+          <div id="conversationList" class="list"></div>
+        </section>
+      </section>
+
+      <section id="sideAdd" class="sidePane hidden">
+        <section class="panel grow">
+          <div class="panelTitle"><span>Ajouter un ami</span></div>
+          <div class="searchBox">
+            <input id="userSearch" placeholder="Entre son pseudo">
+            <button id="searchBtn" class="primary">Chercher</button>
+          </div>
+          <div class="helperText">La demande restera disponible même si ton ami ouvre l'application plus tard.</div>
+          <div id="searchResults" class="miniList"></div>
+        </section>
+      </section>
+
+      <section id="sideRequests" class="sidePane hidden">
+        <section class="panel grow">
+          <div class="panelTitle">Demandes d'amis <span id="requestCount" class="count hidden"></span></div>
+          <div id="requestsList" class="list"></div>
+        </section>
+      </section>
+
+      <section id="sideGames" class="sidePane hidden">
+        <section class="panel grow gameLobbyPanel">
+          <div class="panelTitle"><span>🎮 Jouer avec un ami</span></div>
+          <div id="gameInvitesBox" class="gameInvitesBox hidden">
+            <div class="gameSectionTitle">Invitations reçues</div>
+            <div id="gameInvitesList" class="list"></div>
+          </div>
+          <div class="gameSectionTitle">Tes amis</div>
+          <div id="gameFriendsList" class="list"></div>
+        </section>
+      </section>
+    </aside>
+
+    <section id="chat" class="chat">
+      <div id="emptyState" class="emptyState">
+        <img src="/assets/logo.png" alt="">
+        <h2>Crystallized Call</h2>
+        <p>Choisis un contact ou un groupe.</p>
+      </div>
+
+      <div id="chatView" class="chatView hidden">
+        <header class="chatHeader">
+          <button id="backBtn" class="iconBtn mobileOnly">←</button>
+          <div id="chatAvatar" class="avatar"></div>
+          <div class="chatTitle">
+            <strong id="chatName"></strong>
+            <small id="chatSub"></small>
+          </div>
+          <div class="chatTools">
+            <button id="audioCallBtn" class="roundTool" title="Appel audio">📞</button>
+            <div id="groupActions" class="groupActions hidden">
+              <button id="leaveGroupBtn" class="smallDanger">Quitter</button>
+              <button id="deleteGroupBtn" class="smallDanger strongDanger">Supprimer</button>
+            </div>
+          </div>
+        </header>
+
+        <div id="messages" class="messages"></div>
+
+        <form id="composer" class="composer">
+          <button id="photoBtn" class="mediaBtn" type="button" title="Envoyer une image">🖼️</button>
+          <button id="voiceBtn" class="mediaBtn" type="button" title="Message vocal">🎙️</button>
+          <input id="photoInput" class="hidden" type="file" accept="image/*">
+          <textarea id="messageInput" rows="1" maxlength="4000" placeholder="Écrire un message…"></textarea>
+          <button id="sendBtn" class="primary sendBtn" type="submit">➤</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="groupModal" class="modalWrap hidden">
+    <div class="modal">
+      <div class="modalHead">
+        <h3>Nouveau groupe</h3>
+        <button id="closeGroupBtn" class="iconBtn">✕</button>
+      </div>
+      <label>Nom du groupe</label>
+      <input id="groupName" maxlength="40" placeholder="Ex. Les potes">
+      <div class="labelLine">Choisis les amis</div>
+      <div id="groupFriends" class="checkList"></div>
+      <button id="createGroupBtn" class="primary full">Créer le groupe</button>
+      <div id="groupMessage" class="notice"></div>
+    </div>
+  </div>
+
+  <div id="messageMenu" class="menu hidden">
+    <button id="editMessageBtn">Modifier</button>
+    <button id="deleteMessageBtn" class="dangerText">Supprimer</button>
+    <button id="closeMessageMenuBtn">Annuler</button>
+  </div>
+
+  <section id="gameScreen" class="gameScreen hidden">
+    <div class="gameTopbar">
+      <button id="closeGameBtn" class="gameBackBtn">← Quitter la page</button>
+      <div class="gameTopTitle">
+        <strong id="gameTitle">Partie</strong>
+        <small id="gameStatus">En attente…</small>
+      </div>
+      <button id="gameVoiceBtn" class="gameVoiceBtn">🎙️ Appel vocal</button>
+    </div>
+
+    <div class="gameArena">
+      <div class="gamePlayers">
+        <div id="gamePlayer1" class="gamePlayer"></div>
+        <div class="gameVersus">VS</div>
+        <div id="gamePlayer2" class="gamePlayer"></div>
+      </div>
+
+      <div id="gameChoice" class="gameChoice">
+        <div class="gameChoiceTitle">Choisissez votre jeu</div>
+        <div class="gameCards">
+          <button id="chooseTicTacToe" class="gameCard">
+            <span class="gameCardIcon">❌⭕</span>
+            <strong>Morpion</strong>
+            <small>Aligne 3 symboles</small>
+          </button>
+          <button id="chooseConnect4" class="gameCard">
+            <span class="gameCardIcon">🔴🟡</span>
+            <strong>Puissance 4</strong>
+            <small>Aligne 4 jetons</small>
+          </button>
+        </div>
+      </div>
+
+      <div id="ticTacToeWrap" class="gameBoardWrap hidden">
+        <div id="ticTacToeBoard" class="ticTacToeBoard"></div>
+      </div>
+
+      <div id="connect4Wrap" class="gameBoardWrap hidden">
+        <div id="connect4Board" class="connect4Board"></div>
+      </div>
+
+      <div id="gameResult" class="gameResult hidden">
+        <div id="gameResultIcon" class="gameResultIcon">🏆</div>
+        <div id="gameResultTitle" class="gameResultTitle">Victoire !</div>
+        <div id="gameResultText" class="gameResultText"></div>
+        <div class="gameResultActions">
+          <button id="replayGameBtn" class="primary">Rejouer</button>
+          <button id="leaveGameBtn" class="gameDangerBtn">Quitter la partie</button>
+        </div>
+      </div>
+
+      <button id="abandonGameBtn" class="abandonGameBtn hidden">Abandonner la partie</button>
+    </div>
+  </section>
+
+  <div id="incomingCallModal" class="modalWrap hidden">
+    <div class="modal callModal">
+      <div class="callEmoji">📞</div>
+      <h3>Appel entrant</h3>
+      <div id="incomingCallName" class="incomingCallName">Un ami vous appelle</div>
+      <div class="callModalActions">
+        <button id="declineCallBtn" class="callChoice decline">Refuser</button>
+        <button id="acceptCallBtn" class="callChoice accept">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="callBar" class="callBar hidden">
+    <div class="callPulse">📞</div>
+    <div class="callInfo">
+      <strong id="callName">Appel</strong>
+      <small id="callState">Connexion…</small>
+    </div>
+    <span id="callTimer">00:00</span>
+    <button id="muteCallBtn" class="roundTool">🎙️</button>
+    <button id="hangupCallBtn" class="roundTool hangup">✕</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

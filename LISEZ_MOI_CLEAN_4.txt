@@ -1,0 +1,21 @@
+CRYSTALLIZED CALL — CLEAN 4
+
+Corrections / ajouts :
+- quitter un groupe réparé ;
+- supprimer un groupe réparé ;
+- suppression complète des vieux groupes doublons ;
+- images remises ;
+- messages vocaux remis ;
+- appels audio privés remis ;
+- appels audio de groupe remis ;
+- la liste des conversations ne s'affiche plus contact par contact :
+  tout est préparé puis affiché en une seule fois ;
+- pendant le premier chargement, 3 lignes fixes évitent les sauts d'écran.
+
+IMPORTANT :
+Après avoir envoyé le ZIP sur Netlify, exécute UNE FOIS
+MISE_A_JOUR_CLEAN_4.sql dans Supabase > SQL Editor > New query > Run.
+
+Les appels fonctionnent lorsque les appareils ont l'application/site actif.
+Une vraie sonnerie garantie quand l'application est complètement fermée
+nécessitera plus tard les notifications Push.

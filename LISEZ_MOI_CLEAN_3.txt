@@ -1,0 +1,17 @@
+CRYSTALLIZED CALL — CLEAN 3
+
+Nouveautés :
+- quitter un groupe ;
+- supprimer un groupe si tu es le propriétaire ;
+- suppression des anciens groupes en double portant le même nom ;
+- impossible de recréer deux groupes avec le même nom
+  (majuscule/minuscule et espaces ignorés) ;
+- l'application masque aussi les doublons restants côté écran.
+
+IMPORTANT :
+Après le déploiement du ZIP sur Netlify, exécute UNE FOIS :
+MISE_A_JOUR_CLEAN_3_GROUPES.sql
+dans Supabase > SQL Editor > New query > Run.
+
+Le script SQL ne supprime pas les comptes, amis ou discussions privées.
+Pour les groupes doublons, il garde le plus ancien et supprime les autres.

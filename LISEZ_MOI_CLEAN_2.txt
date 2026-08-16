@@ -1,0 +1,15 @@
+CRYSTALLIZED CALL — CLEAN 2
+
+Ajouts :
+- déconnexion claire avec porte rouge + confirmation ;
+- comptes déjà utilisés proposés sur l'écran de connexion ;
+- aucun mot de passe n'est mémorisé ;
+- onglet Ajouter avec recherche par pseudo ;
+- demandes d'amis persistantes dans Supabase ;
+- onglet Demandes avec point rouge si une demande attend ;
+- rond rouge sur Discussions + sur chaque conversation pour les nouveaux messages ;
+- après acceptation, la discussion privée est créée automatiquement pour que le contact apparaisse tout de suite ;
+- création de groupe protégée contre les doubles clics ;
+- messages simples "pas encore d'ami/discussion" à la place des erreurs techniques inutiles.
+
+Les appels restent volontairement absents pour garder cette base stable.

@@ -1,0 +1,25 @@
+CRYSTALLIZED CALL — CLEAN 1
+
+Ceci est une reconstruction neuve du front de l'application.
+
+But de cette base :
+- connexion Supabase simple et persistante ;
+- contacts et demandes d'amis ;
+- discussions privées ;
+- groupes ;
+- messages temps réel ;
+- badge rouge pour nouveaux messages ;
+- modification et suppression des messages.
+
+IMPORTANT :
+Les appels ne sont volontairement PAS inclus dans CLEAN 1.
+Ils seront ajoutés après validation de cette base, pour ne pas remettre du code WebRTC instable dans l'application.
+
+Installation :
+1. Déployer ce ZIP sur Netlify.
+2. Ouvrir le site.
+3. Vérifier que "CLEAN 1" apparaît.
+4. Se connecter une fois.
+5. Fermer complètement l'application puis la rouvrir : le compte doit rester connecté.
+
+Cette version utilise le projet Supabase déjà configuré et ne demande normalement pas de nouveau SQL.
